@@ -1,0 +1,5 @@
+{
+  "name": "MODULACC",
+  "description": "Una aplicación web educativa diseñada para estudiantes con discapacidad visual, enfocada en la accesibilidad y el Diseño Universal para el Aprendizaje (DUA). Incluye módulos de ejercicios auditivos, seguimiento de progreso y herramientas de administración.",
+  "requestFramePermissions": []
+}

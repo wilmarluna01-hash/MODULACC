@@ -1,0 +1,172 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "User profile information including role and name.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the user."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User's email address."
+        },
+        "name": {
+          "type": "string",
+          "description": "User's full name."
+        },
+        "role": {
+          "type": "string",
+          "enum": ["student", "admin", "tutor"],
+          "description": "User's role in the platform."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the user account was created."
+        }
+      },
+      "required": ["id", "email", "role"]
+    },
+    "forum_posts": {
+      "title": "Forum Post",
+      "description": "A post in the community forum.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the post."
+        },
+        "authorId": {
+          "type": "string",
+          "description": "ID of the user who created the post."
+        },
+        "authorName": {
+          "type": "string",
+          "description": "Name of the user who created the post."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the post."
+        },
+        "content": {
+          "type": "string",
+          "description": "Content of the post."
+        },
+        "category": {
+          "type": "string",
+          "enum": ["General", "Ciencias", "Historia", "Matemáticas", "Tecnología"],
+          "description": "Category of the post."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the post was created."
+        },
+        "replies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "authorId": { "type": "string" },
+              "authorName": { "type": "string" },
+              "content": { "type": "string" },
+              "createdAt": { "type": "string", "format": "date-time" }
+            }
+          },
+          "description": "List of replies to the post."
+        }
+      },
+      "required": ["authorId", "authorName", "title", "content", "category", "createdAt"]
+    },
+    "progress": {
+      "title": "User Progress",
+      "description": "Tracks user progress in different modules.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The ID of the user."
+        },
+        "moduleId": {
+          "type": "string",
+          "description": "The ID of the module."
+        },
+        "score": {
+          "type": "integer",
+          "description": "The score achieved in the module."
+        },
+        "completedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the module was completed."
+        }
+      },
+      "required": ["userId", "moduleId", "score"]
+    },
+    "exercises": {
+      "title": "Module Exercise",
+      "description": "An exercise or activity for a specific module.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "moduleId": { "type": "string", "enum": ["science", "history", "math", "technology"] },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "instruction": { "type": "string" },
+        "possibleAnswers": { "type": "array", "items": { "type": "string" } },
+        "correctAnswer": { "type": "string" },
+        "explanation": { "type": "string" },
+        "fileUrl": { "type": "string", "description": "Base64 encoded file content or URL." },
+        "fileName": { "type": "string", "description": "Original name of the uploaded file." },
+        "order": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "authorId": { "type": "string" }
+      },
+      "required": ["moduleId", "title", "instruction", "createdAt", "authorId"]
+    },
+    "user_diagnostics": {
+      "title": "User Diagnostic",
+      "description": "Tracks cognitive diagnostic metrics for the user.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "attentionAccuracy": { "type": "number" },
+        "memorySpan": { "type": "integer" },
+        "reactionTime": { "type": "number" },
+        "distractionResistance": { "type": "number" },
+        "fatigueIndex": { "type": "number" },
+        "preferredDifficulty": { "type": "number" },
+        "adaptationHistory": { "type": "array", "items": { "type": "object" } },
+        "overallLevel": { "type": "string", "enum": ["basic", "intermediate", "advanced"] },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "overallLevel", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "Collection of user profiles."
+    },
+    "/progress/{progressId}": {
+      "schema": "progress",
+      "description": "Collection of user progress records."
+    },
+    "/forum_posts/{postId}": {
+      "schema": "forum_posts",
+      "description": "Collection of community forum posts."
+    },
+    "/exercises/{exerciseId}": {
+      "schema": "exercises",
+      "description": "Collection of module exercises/activities."
+    },
+    "/user_diagnostics/{userId}": {
+      "schema": "user_diagnostics",
+      "description": "Collection of user cognitive diagnostic records."
+    }
+  }
+}

@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MODULACC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#0EA5E9', // Sky 500
+              light: '#7DD3FC',   // Sky 300
+              dark: '#0369A1',    // Sky 700
+            },
+            secondary: {
+              DEFAULT: '#F1F5F9', // Slate 100 - Soft secondary background
+            },
+            accent: {
+              DEFAULT: '#6366F1', // Indigo 500 - Modern accent
+            },
+            background: '#F8FAFC', // Slate 50 - Very light off-white background
+            textDark: '#1E293B',  // Slate 800 - Professional dark text
+            textLight: '#FFFFFF',
+            success: '#10B981',   // Emerald 500
+            error: '#EF4444',     // Red 500
+            warning: '#F59E0B',   // Amber 500
+          },
+          fontFamily: {
+            sans: ['Arial', 'Helvetica', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.6.2",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react-dom": "https://esm.sh/react-dom@^19.1.0",
+    "recharts": "https://esm.sh/recharts@^2.15.3"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-background text-textDark">
+  <div id="root"></div>
+  <noscript>Necesitas habilitar JavaScript para ejecutar esta aplicación.</noscript>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

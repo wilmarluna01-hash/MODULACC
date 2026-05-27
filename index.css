@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+:root {
+  --base-font-size: 16px;
+}
+
+body[data-font-size="small"] { --base-font-size: 14px; }
+body[data-font-size="large"] { --base-font-size: 20px; }
+
+body {
+  font-size: var(--base-font-size);
+}
+
+body.high-contrast {
+  background-color: black !important;
+  color: white !important;
+}
+
+body.high-contrast * {
+  border-color: yellow !important;
+}
